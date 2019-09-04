@@ -1,4 +1,4 @@
-let pets = {
+const pets = {
     name: 'Kitty',
     numberLegs: 4,
     body: true,
@@ -13,11 +13,20 @@ let pets = {
             },
             
         },
-        dogs: undefined,
+        
     },
+    dogs: undefined,
+    caws: null,
 };
 
-alert( "age" in pets );
-console.log('hi');
+const allowed = ['name', 'body'];
 
+const filtered = Object.keys(pets)
+  .filter(key => allowed.includes(key))
+  .reduce((obj, key) => {
+    obj[key] = pets[key];
+    return obj;
+  }, {});
+
+console.log(filtered);
 
