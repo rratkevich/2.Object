@@ -19,14 +19,13 @@ const pets = {
     caws: null,
 };
 
-const allowed = ['name', 'body'];
+const answer = []; 
 
-const filtered = Object.keys(pets)
-  .filter(key => allowed.includes(key))
-  .reduce((obj, key) => {
-    obj[key] = pets[key];
-    return obj;
-  }, {});
+function primitives(obj) {
+    Object.keys(obj).map((key) => {
+        (typeof obj[key] == 'object' && obj[key] !== null) ? primitives(obj[key]) : answer.push(obj[key]);
+    })
+}
 
-console.log(filtered);
-
+primitives(pets)
+console.log(answer)
